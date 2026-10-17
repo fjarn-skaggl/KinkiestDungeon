@@ -3671,6 +3671,18 @@ let KDLastButtonsCache: Record<string, KDButtonParamData> = {
 let KDLastHoldButtonsCache: Record<string, KDButtonParamData> = {
 };
 
+function KDResolveButtonHover(params: KDButtonParamData, Disabled: boolean, setBox: boolean = true): {hover: boolean, Disabled: boolean} {
+	let hover = ((MouseX >= params.Left) && (MouseX <= params.Left + params.Width) && (MouseY >= params.Top) && (MouseY <= params.Top + params.Height) && !CommonIsMobile && !Disabled);
+	if (hover) {
+		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) {
+			KDCurrentHoverButton = params;
+			if (setBox) KDCurrentHoverBox = params;
+		}
+		else {Disabled = true; hover = false;}
+	}
+	return {hover: hover, Disabled: Disabled};
+}
+
 /**
  * Draws a button component
  * @param name - Name of the button element
@@ -3713,14 +3725,8 @@ function DrawButtonKD (
 		priority: 0,
         Hover
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) {
-            KDCurrentHoverButton = params;
-            KDCurrentHoverBox = params;
-        }
-		else {Disabled = true; hover = false;}
-	}
+	let hov = KDResolveButtonHover(params, Disabled);
+	Disabled = hov.Disabled;
 	DrawButtonVis(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, undefined, undefined, undefined, undefined, undefined,undefined, name);
 	KDButtonsCache[name] = params;
 }
@@ -3793,12 +3799,8 @@ function DrawHoldButtonKDExTo (
 		hotkeyPress: options?.hotkeyPress,
 		nonplayable: options?.nonplayable,
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) KDCurrentHoverButton = params;
-		else Disabled = true;
-	}
+	let hov = KDResolveButtonHover(params, Disabled, false);
+	Disabled = hov.Disabled;
 	DrawButtonVisTo(Container, Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, FillColor, FontSize, ShiftText, undefined, options?.zIndex, options, name);
 	KDHoldButtonsCache[name] = params
 	return MouseIn(Left,Top,Width,Height);
@@ -3871,19 +3873,13 @@ function DrawButtonKDEx (
 		hoverData: options?.hoverData,
 		onHover: options?.onHover,
 		nonplayable: options?.nonplayable,
-    Hover,
+		Hover,
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) {
-            KDCurrentHoverButton = params;
-            KDCurrentHoverBox = params;
-        }
-		else {Disabled = true; hover = false;}
-	}
+	let hov = KDResolveButtonHover(params, Disabled);
+	Disabled = hov.Disabled;
 	DrawButtonVis(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, FillColor, FontSize, ShiftText, undefined, options?.zIndex, options, name);
 	KDButtonsCache[name] = params
-	if (hover && options?.onHover) options.onHover(params);
+	if (hov.hover && options?.onHover) options.onHover(params);
 	return MouseIn(Left,Top,Width,Height);
 }
 
@@ -3983,15 +3979,11 @@ function DrawButtonKDExContext (
 		onHover: options?.onHover,
 		nonplayable: options?.nonplayable,
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) KDCurrentHoverButton = params;
-		else Disabled = true;
-	}
+	let hov = KDResolveButtonHover(params, Disabled, false);
+	Disabled = hov.Disabled;
 	DrawButtonVis(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, FillColor, FontSize, ShiftText, undefined, options?.zIndex, options, name);
 	KDButtonsCache[name] = params;
-	if (hover && options?.onHover) options.onHover(params);
+	if (hov.hover && options?.onHover) options.onHover(params);
 	return MouseIn(Left,Top,Width,Height);
 }
 
@@ -4064,19 +4056,13 @@ function DrawButtonKDExScroll (
 		hoverData: options?.hoverData,
 		onHover: options?.onHover,
 		nonplayable: options?.nonplayable,
-    Hover,
+		Hover,
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) {
-            KDCurrentHoverButton = params;
-            KDCurrentHoverBox = params;
-        }
-		else {Disabled = true; hover = false;}
-	}
+	let hov = KDResolveButtonHover(params, Disabled);
+	Disabled = hov.Disabled;
 	DrawButtonVis(Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, FillColor, FontSize, ShiftText, undefined, options?.zIndex, options, name);
 	KDButtonsCache[name] = params
-	if (hover && options?.onHover) options.onHover(params);
+	if (hov.hover && options?.onHover) options.onHover(params);
 	return MouseIn(Left,Top,Width,Height);
 }
 
@@ -4150,19 +4136,13 @@ function DrawButtonKDExScrollTo (
 		hoverData: options?.hoverData,
 		onHover: options?.onHover,
 		nonplayable: options?.nonplayable,
-    Hover,
+		Hover,
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) {
-            KDCurrentHoverButton = params;
-            KDCurrentHoverBox = params;
-        }
-		else {Disabled = true; hover = false;}
-	}
+	let hov = KDResolveButtonHover(params, Disabled);
+	Disabled = hov.Disabled;
 	DrawButtonVisTo(Container, Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, FillColor, FontSize, ShiftText, undefined, options?.zIndex, options, name);
 	KDButtonsCache[name] = params
-	if (hover && options?.onHover) options.onHover(params);
+	if (hov.hover && options?.onHover) options.onHover(params);
 	return MouseIn(Left,Top,Width,Height);
 }
 
@@ -4231,21 +4211,11 @@ function DrawButtonKDExTo (
 		onHover: options?.onHover,
 		Hover,
 	};
-	let hover = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile && !Disabled);
-	if (hover) {
-		
-		if (!KDCurrentHoverButton || ((params.priority || 0) > (KDCurrentHoverButton.priority || 0))) {
-			KDCurrentHoverButton = params;
-			KDCurrentHoverBox = params;
-		}
-		else {
-			Disabled = true;
-			hover = false;
-		}
-	}
+	let hov = KDResolveButtonHover(params, Disabled);
+	Disabled = hov.Disabled;
 	DrawButtonVisTo(Container, Left, Top, Width, Height, Label, Color, Image, HoveringText, Disabled, NoBorder, FillColor, FontSize, ShiftText, undefined, options?.zIndex, options, name);
 	KDButtonsCache[name] = params;
-	if (hover && options?.onHover) options.onHover(params);
+	if (hov.hover && options?.onHover) options.onHover(params);
 	return MouseIn(Left,Top,Width,Height);
 }
 
