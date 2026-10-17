@@ -3696,6 +3696,7 @@ type KDLockType = {
 	doPick: (data: any) => boolean;
 	failPick: (data: any) => string;
 	breakChance: (data: any) => boolean;
+	// rather than calling the function (which could vary) this is for classifying the lock
 	unlockable: boolean;
 	unlock_diff?: number;
 	key: string;
@@ -3705,10 +3706,12 @@ type KDLockType = {
 	failUnlock: (data: any) => string;
 	removeKeys: (data: any) => void;
 
+	// Start of level -- for gold locks
 	levelStart: (item) => void;
 	shrineImmune: boolean;
 	shopImmune?: boolean,
 
+	// rather than calling the function (which could vary) this is for classifying the lock
 	commandlevel: number;
 	commandable: boolean;
 	command_lesser: () => number;
