@@ -229,104 +229,66 @@ function KDPlayerTitlesRefreshCategories() {
     KDPlayerTitleCategories = categoriesobject
 }
 
+const KDPlayerTitleDefaults = {
+    titleActive: () => false,
+    titleActivate: () => false,
+    titleDeactivate: () => false,
+    icon: "None",
+};
+
 let KDPlayerTitles: Record<string, KDPlayerTitle> = {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Class Titles
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Player is playing as the wizard class
     "ClassMage": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.Class == "Mage")
         },
         "priority": -100,
         "color": "#406dce",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Classes",
-        "icon": "None",
     },
     // Player is playing as the warrior class.
     "ClassFighter": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.Class == "Fighter")
         },
         "priority": -100,
         "color": "#f51212",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Classes",
-        "icon": "None",
     },
     // Player is playing as the rogue class
     "ClassRogue": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.Class == "Rogue")
         },
         "priority": -100,
         "color": "#12ff0a",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Classes",
-        "icon": "None",
     },
     // Player is playing as the trainee class
     "ClassTrainee": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.Class == "Trainee")
         },
         "priority": -100,
         "color": "#ffa0d7",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Classes",
-        "icon": "None",
     },
     // Player is playing as the peasant class
     "ClassPeasant": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.Class == "Peasant")
         },
         "priority": -100,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Classes",
-        "icon": "None",
     },
 
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -334,175 +296,94 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Player has run their SP down to 0.
     "Exhausted": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KinkyDungeonStatStamina <= 0.0)
         },
         "priority": 0,
         "color": "#22aa22",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     // Player is at 95% desire (not distraction, desire)
     "Distracted": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KinkyDungeonStatDistractionLower >= (KinkyDungeonStatDistractionMax * 0.95))
         },
         "priority": 3,
         "color": "#e977cc",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     // Player has exhausted their mana pool and has less than 15 mana remaining.
     "OutOfMana": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return ((KinkyDungeonStatManaPool <= 0) && (KinkyDungeonStatMana <= 1.5))
         },
         "priority": 10,
         "color": "#0052eb",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     // Player has run out of willpower
     "OutofWillpower": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KinkyDungeonStatWill <= 0)
         },
         "priority": 1,
         "color": "#7a0000",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     // Player has 0 WP, 0 SP and 0 MP at the same time. 
     "OutofEverything": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return ((KinkyDungeonStatWill <= 0) && (KinkyDungeonStatMana <= 0) && (KinkyDungeonStatStamina <= 0))
         },
         "priority": 1,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     "JuicedUp": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonStatStaminaMax >= 40)
         },
         "priority": 1,
         "color": "#00ff37",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     "Manafused": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonStatManaMax >= 40)
         },
         "priority": 1,
         "color": "#5762ff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     "Unbreakable": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonStatWillMax >= 40)
         },
         "priority": 1,
         "color": "#ff0e0e",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
     "Unwavering": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonStatDistractionMax >= 40)
         },
         "priority": 1,
         "color": "#ff3dbe",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Stats",
-        "icon": "None",
     },
 
 
@@ -511,219 +392,120 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Player has opened a chest on this floor
     "TreasureSeeker": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.AlreadyOpened.length > 0)
         },
         "priority": 2,
         "color": "#fa7305",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player has been put in jail
     "Jailed": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KDGameData?.PrisonerState == "Jail")
         },
         "priority": 11,
         "color": "#fa7305",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player has been leashed
     "Leashed": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KDGameData?.KinkyDungeonLeashedPlayer >= 1)
         },
         "priority": 7,
         "color": "#a5ff8f",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player is off balance
     "Offbalance": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KDGameData?.Balance <= 0.5)
         },
         "priority": 5,
         "color": "#aa96ff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player summoned an angel
     "AngelSummoned": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KDGameData?.RescueFlag)
         },
         "priority": 3,
         "color": "#ffd900",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player finds an Angel
     "AngelFound": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KDNearbyEnemies(KinkyDungeonPlayerEntity.x, KinkyDungeonPlayerEntity.y,2).map((t) => t.Enemy?.name).includes("Angel"))
         },
         "priority": 3,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player has been recruited
     "Recruited": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruited`) != undefined)
         },
         "priority": 3,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player accepts a bondage offer
     "Submissive": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             
             return (KDGameData?.titledata?.sub)
         },
         "priority": 3,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player convinces an NPC to wear their bondage offer
     "Dominant": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             
             return (KDGameData?.titledata?.dom)
         },
         "priority": 3,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     // Player accepts a bondage offer and convinces another bondage offer to wear their requested restraint
     "Switch": { 
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             
             return ((KDGameData?.titledata?.sub) && (KDGameData?.titledata?.dom))
         },
         "priority": 3,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
     "Moth": { 
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             
             return (KDGameData?.titledata?.lampstolen)
         },
         "priority": 3,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Game",
-        "icon": "None",
     },
 
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -731,137 +513,75 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
     // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Player is wearing chastity belt and chastity bra
     "Chaste": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonIsChaste(undefined) && KinkyDungeonIsChaste(true))
         },
         "priority": 4,
         "color": "#f2efff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     "Hoarder": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return ((KinkyDungeonInventory.get("looserestraint").size + KinkyDungeonInventory.get("consumable").size + KinkyDungeonInventory.get("weapon").size) > 300)
         },
         "priority": 3,
         "color": "#f2efff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     "LootGoblin": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return ((KinkyDungeonInventory.get("looserestraint").size + KinkyDungeonInventory.get("consumable").size + KinkyDungeonInventory.get("weapon").size) > 1000)
         },
         "priority": 3,
         "color": "#f2efff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     "InfinitePockets": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return ((KinkyDungeonInventory.get("looserestraint").size + KinkyDungeonInventory.get("consumable").size + KinkyDungeonInventory.get("weapon").size) > 3000)
         },
         "priority": 3,
         "color": "#f2efff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     "Bound": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KDGameData?.Restriction > 20)
         },
         "priority": 4,
         "color": "#f2efff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     "Helpless": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KDGameData?.Restriction > 45)
         },
         "priority": 4,
         "color": "#f2efff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     "Blind": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => {
             return (KinkyDungeonBlindLevel > 0)
         },
         "priority": 4,
         "color": "#37638b",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     // Player is fully slimed and then it hardens.
     "EncasedAdventurer": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => { 
             let restraints = ['HardSlimeHands', 'HardSlimeBoots', 'HardSlimeMouth', 'HardSlimeArms', 'HardSlimeFeet', 'HardSlimeLegs', 'HardSlimeHead']
@@ -875,20 +595,11 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
         },
         "priority": 4,
         "color": "#9f00b4",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => { 
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     // Player wears any Ancient restraint.
     "NoLocks": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => { 
             let restraints = ["EnchantedBelt", "EnchantedBra", "EnchantedHeels", "EnchantedBlindfold", "EnchantedAnkleCuffs", "EnchantedAnkleCuffs2", "EnchantedMuzzle", "EnchantedBallGag", "EnchantedArmbinder", "EnchantedMittens"]
             let worn = false;
@@ -901,20 +612,11 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
         },
         "priority": 4,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => { 
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
     // Player wears any cursed restraint or armor.
     "Cursed": {
+        ...KDPlayerTitleDefaults,
         rapid: true,
         "unlockCondition": () => { 
             return (Array.from(KinkyDungeonInventory.get("restraint").values()).some((t) => {
@@ -923,17 +625,7 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
         },
         "priority": 4,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        }, 
-        "titleDeactivate": () => { 
-            return false;
-        },
         "category": "Inventory",
-        "icon": "None",
     },
 
 
@@ -941,838 +633,431 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
     // Boss Titles
     // ---------------------------------------------------------------------------------------------
     "FuukaRestGood": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonInventoryGet("MikoCollar2")?.name != undefined)
         },
         "priority": 2,
         "color": "#faaeb2",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Boss",
-        "icon": "None",
     },
     "FuukaRestBad": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonInventoryGet("MikoCollar")?.name != undefined)
         },
         "priority": 2,
         "color": "#ff9196",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Boss",
-        "icon": "None",
     },
     "WardenRestGood": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonInventoryGet("WardenBelt2")?.name != undefined)
         },
         "priority": 2,
         "color": "#9cfff2",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Boss",
-        "icon": "None",
     },
     "WardenRestBad": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonInventoryGet("WardenBelt")?.name != undefined)
         },
         "priority": 2,
         "color": "#ffc392",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Boss",
-        "icon": "None",
     },
     "DollmakerVisor": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonInventoryGet("DollmakerVisor")?.name != undefined)
         },
         "priority": 2,
         "color": "#ff88ca",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Boss",
-        "icon": "None",
     },
     "DollmakerMask": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonInventoryGet("DollmakerMask")?.name != undefined)
         },
         "priority": 2,
         "color": "#ff89c4",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Boss",
-        "icon": "None",
     },
 
     // ---------------------------
     // Spell Point Mastery
     // ---------------------------
     "SpellMasteryFlame": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeFire")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#ff0707",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        }, 
         // Run when the player deselects this title or it falls off of auto. 
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryWater": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeWater")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#4032ff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryEarth": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeEarth")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#7c5c42",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryAir": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeAir") // Is there seriously only two spells for air? 
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#ffffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryLightning": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeLightning")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#ffee00",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryIce": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeIce")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#00f7ff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryRope": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeRope")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#dfb26f",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryMetal": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeMetal")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#acacac",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryLeather": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeLeather")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#414141",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasterySummon": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeSummon")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#e6fde5",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryLatex": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeLatex")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#993ccf",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryPhysics": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticePhysics")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#72eb9a",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryShadow": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeShadow")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#1e1d58",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryLight": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeLight")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#ffedc5",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryObscurity": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeMystery")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#b8b8b8",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryProjection": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeProjection") // Yeah theres apparently only one spell. 
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#a1a1a1",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     "SpellMasteryKnowledge": { 
+        ...KDPlayerTitleDefaults,
         // Run to unlock and attempt to auto apply title. 
         "unlockCondition": () => {
-            
             let reqspells = KDUpdateSpellMasteryReqs("ApprenticeKnowledge")
             return (reqspells.every((sp) => KinkyDungeonSpells.map((t) => t.name).includes(sp))) // Checks if we have every single spell above
         },
         "priority": 2,
         "color": "#d35d5d",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Spells",
-        "icon": "None",
     },
     // -----------------------------------------------------------------------------------------
     // Recruited by Faction
     // -----------------------------------------------------------------------------------------
     "Bountyhunter": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferBountyhunter`) != undefined)
         },
         "priority": 8,
         "color": KDBaseForest,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Bandit": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferBandit`) != undefined)
         },
         "priority": 8,
         "color": KDBaseOrange,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Alchemist": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferAlchemist`) != undefined)
         },
         "priority": 8,
         "color": KDBaseCyan,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Nevermere": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferWolfgirl`) != undefined)
         },
         "priority": 8,
         "color": KDBaseTeal,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Apprentice": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferApprentice`) != undefined)
         },
         "priority": 8,
         "color": KDBaseLightBlue,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Dressmaker": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferDressmaker`) != undefined)
         },
         "priority": 8,
         "color": KDBaseRibbon,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     /*
     "Witch": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferWitch`) != undefined)
         },
         "priority": 8,
         "color": KDBasePurple,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     */
     "Elemental": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferElemental`) != undefined)
         },
         "priority": 8,
         "color": KDBaseRed,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Dragon": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferDragonheart`) != undefined)
         },
         "priority": 8,
         "color": "#b9451d",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Maidforce": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferMaid`) != undefined)
         },
         "priority": 8,
         "color": KDBaseWhite,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Bast": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferBast`) != undefined)
         },
         "priority": 8,
         "color": KDBaseYellowGreen,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "Elf": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferElf`) != undefined)
         },
         "priority": 8,
         "color": KDBaseMint,
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     "AncientRobot": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonFlags.get(`Recruit_OfferAncientRobot`) != undefined)
         },
         "priority": 8,
         "color": "#888888",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Faction",
-        "icon": "None",
     },
     // ---------------------------------------------------------------------------------------------
     // Goddess Reputation Achievements
     // ---------------------------------------------------------------------------------------------
     "Conjure": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Conjure"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Conjure"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Elements": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Elements"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Elements"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Illusion": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Illusion"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Illusion"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Latex": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Latex"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Latex"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Leather": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Leather"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Leather"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Metal": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Metal"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Metal"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Rope": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Rope"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Rope"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
     "Will": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return (KinkyDungeonGoddessRep["Will"] >= 50)
         },
         "priority": 8,
         "color": KDRepNameColor["Will"],
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Reputation",
-        "icon": "None",
     },
 
     // -------------------------------------
@@ -1780,6 +1065,7 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
     // -------------------------------------
     // Player has all of the spells unlocked.
     "Mastery_Archmage": { 
+        ...KDPlayerTitleDefaults,
         // Run to unlock and attempt to auto apply title. 
         "unlockCondition": () => {
             let req = ["SpellMasteryFlame", "SpellMasteryAir", "SpellMasteryLightning", "SpellMasteryWater", "SpellMasteryEarth", "SpellMasteryRope", "SpellMasteryLeather", "SpellMasteryMetal", "SpellMasteryLatex", "SpellMasteryPhysics", "SpellMasteryShadow", "SpellMasteryLight", "SpellMasteryObscurity", "SpellMasteryProjection", "SpellMasteryKnowledge", "SpellMasterySummon"]
@@ -1788,20 +1074,11 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
         },
         "priority": 2,
         "color": "#00ffff",
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Mastery",
-        "icon": "None",
     },
     // Player enters NG+25
     "Mastery_EWhac": { 
+        ...KDPlayerTitleDefaults,
         // Run to unlock and attempt to auto apply title. 
         "unlockCondition": () => {
             return (KinkyDungeonNewGame >= 25) // Check if we entered NG+25
@@ -1810,39 +1087,21 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
         // Color for the title - defaults to #ffffff 
         "color": "#fa3030", 
         // Run every turn while active
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false; 
-        },
-        "titleDeactivate": () => {
-            return false;
-        }, 
         // Category in the Titles Tab
         "category": "Mastery",
-        "icon": "None",
     },
     "Mastery_MossBoss": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => {
             return ((KinkyDungeonStatDistractionMax >= 40) && (KinkyDungeonStatWillMax >= 40) && (KinkyDungeonStatManaMax >= 40) && (KinkyDungeonStatStaminaMax >= 40))
         },
         "priority": 1,
         "color": "#74f39f", 
-        "titleActive": () => {
-            return false;
-        },
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => {
-            return false;
-        },
         "category": "Mastery",
-        "icon": "None",
     },
     // Player wears every Ancient restraint.
     "Mastery_AncientAdventurer": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => { 
             let restraints = ["EnchantedBelt", "EnchantedBra", "EnchantedHeels", "EnchantedBlindfold", "EnchantedAnkleCuffs", "EnchantedMuzzle", "EnchantedBallGag", "EnchantedArmbinder", "EnchantedMittens"]
             let worn = true;
@@ -1860,37 +1119,18 @@ let KDPlayerTitles: Record<string, KDPlayerTitle> = {
         },
         "priority": 12,
         "color": "#ffca57",
-        "titleActive": () => {
-            return false;
-        }, 
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => { 
-            return false;
-        },
         "category": "Mastery",
-        "icon": "None",
     },
     // Player enters edged
     "LostInSpace": {
+        ...KDPlayerTitleDefaults,
         "unlockCondition": () => { 
             
             return KDMapData?.RoomType == "DemonTransition";
         },
         "priority": 12,
         "color": "#883afd",
-        "titleActive": () => {
-            return false;
-        }, 
-        "titleActivate": () => {
-            return false;
-        },
-        "titleDeactivate": () => { 
-            return false;
-        },
         "category": "Exploration",
-        "icon": "None",
     },
 }
 
